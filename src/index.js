@@ -1,1 +1,3 @@
-console.log("okk");
+import CartInit from "./modules/card";
+
+CartInit()

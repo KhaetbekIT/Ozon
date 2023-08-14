@@ -92,7 +92,8 @@
   },
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch --mode=development"
+    "watch": "webpack --watch --mode=development",
+    "server": "json-server --watch db/db.json --port 9000"
   },
   "keywords": [],
   "author": "",

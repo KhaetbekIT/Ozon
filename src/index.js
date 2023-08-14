@@ -1,5 +1,6 @@
 import { GetDataFunc } from "./modules/api";
 import CartInit from "./modules/card";
+import CatalogInit from "./modules/catalog";
 import RenderGoodsInit from "./modules/render-goods";
 import Search from "./modules/search";
 
@@ -10,3 +11,5 @@ GetDataFunc().then(data =>{
 })
 
 Search()
+
+CatalogInit()

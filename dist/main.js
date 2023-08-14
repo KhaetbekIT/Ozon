@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/api */ \"./src/modules/api.js\");\n/* harmony import */ var _modules_card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/card */ \"./src/modules/card.js\");\n/* harmony import */ var _modules_render_goods__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/render-goods */ \"./src/modules/render-goods.js\");\n/* harmony import */ var _modules_search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/search */ \"./src/modules/search.js\");\n\n\n\n\n\n(0,_modules_card__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\n\n;(0,_modules_api__WEBPACK_IMPORTED_MODULE_0__.GetDataFunc)().then(data =>{\n    ;(0,_modules_render_goods__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(data)\n})\n\n;(0,_modules_search__WEBPACK_IMPORTED_MODULE_3__[\"default\"])()\n\n//# sourceURL=webpack://ozon/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/api */ \"./src/modules/api.js\");\n/* harmony import */ var _modules_card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/card */ \"./src/modules/card.js\");\n/* harmony import */ var _modules_catalog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/catalog */ \"./src/modules/catalog.js\");\n/* harmony import */ var _modules_render_goods__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/render-goods */ \"./src/modules/render-goods.js\");\n/* harmony import */ var _modules_search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/search */ \"./src/modules/search.js\");\n\n\n\n\n\n\n(0,_modules_card__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\n\n;(0,_modules_api__WEBPACK_IMPORTED_MODULE_0__.GetDataFunc)().then(data =>{\n    ;(0,_modules_render_goods__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(data)\n})\n\n;(0,_modules_search__WEBPACK_IMPORTED_MODULE_4__[\"default\"])()\n\n;(0,_modules_catalog__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\n\n//# sourceURL=webpack://ozon/./src/index.js?");
 
 /***/ }),
 
@@ -40,13 +40,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/modules/catalog.js":
+/*!********************************!*\
+  !*** ./src/modules/catalog.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ \"./src/modules/api.js\");\n/* harmony import */ var _filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./filter */ \"./src/modules/filter.js\");\n/* harmony import */ var _render_goods__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./render-goods */ \"./src/modules/render-goods.js\");\n\n\n\n\nconst CatalogInit = () => {\n    const catalogButton = document.querySelector(\".catalog-button > button\")\n    const catalogModal = document.querySelector(\".catalog\")\n    const catalogModalItems = document.querySelectorAll(\".catalog-list > li\")\n\n    let isOpen = false\n\n    catalogButton.addEventListener(\"click\", () => {\n        isOpen = !isOpen\n\n        isOpen ? catalogModal.classList.add(\"d-block\") : catalogModal.classList.remove(\"d-block\")\n    })\n\n    catalogModalItems.forEach(catalogModalItem => {\n        catalogModalItem.addEventListener(\"click\", ()=>{\n            const textContent = catalogModalItem.textContent;\n\n            (0,_api__WEBPACK_IMPORTED_MODULE_0__.GetDataFunc)().then(data =>{\n                (0,_render_goods__WEBPACK_IMPORTED_MODULE_2__[\"default\"])((0,_filter__WEBPACK_IMPORTED_MODULE_1__.CategoryFilterFunc)(data, textContent))\n            })\n        })\n    });\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CatalogInit);\n\n//# sourceURL=webpack://ozon/./src/modules/catalog.js?");
+
+/***/ }),
+
 /***/ "./src/modules/filter.js":
 /*!*******************************!*\
   !*** ./src/modules/filter.js ***!
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   SearchFilterFunc: () => (/* binding */ SearchFilterFunc)\n/* harmony export */ });\nconst SearchFilterFunc = (goods = [], value) => {\n    return goods.filter(goodsItem => {\n        return goodsItem.title.includes(value)\n    })\n}\n\n//# sourceURL=webpack://ozon/./src/modules/filter.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   CategoryFilterFunc: () => (/* binding */ CategoryFilterFunc),\n/* harmony export */   SearchFilterFunc: () => (/* binding */ SearchFilterFunc)\n/* harmony export */ });\nconst SearchFilterFunc = (goods = [], value) => {\n    return goods.filter(goodsItem => {\n        return goodsItem.title.toLowerCase().includes(value.toLowerCase())\n    })\n}\n\nconst CategoryFilterFunc = (goods = [], value) => {\n    return goods.filter(goodsItem => {\n        return goodsItem.category === value\n    })\n}\n\n//# sourceURL=webpack://ozon/./src/modules/filter.js?");
 
 /***/ }),
 

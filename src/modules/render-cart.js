@@ -1,13 +1,15 @@
 const RenderCart = (goods = []) => {
 
     const cartWrapper = document.querySelector(".cart-wrapper")
-    // @todo
-    goods.length === 0 ? (
-        cartWrapper.insertAdjacentHTML("beforeend", `
-            <div id="cart-empty"> Ваша корзина пока пуста </div>
-        `)
-    ) : (
-        goods.forEach(goodsItem => {
+
+    if (goods.length === 0) {
+        cartWrapper.innerHTML = `<div id="cart-empty"> Ваша корзина пока пуста </div>`
+    } else {
+        const carts = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+
+        cartWrapper.innerHTML = ""
+
+        carts.forEach(goodsItem => {
             cartWrapper.insertAdjacentHTML("beforeend", `
                 <!-- КАРТОЧКА ТОВАРА -->
                     <div class="card" data-key="${goodsItem.id}">
@@ -25,7 +27,7 @@ const RenderCart = (goods = []) => {
                 <!-- END КАРТОЧКА ТОВАРА -->
             `)
         })
-    )
+    }
 
 }
 

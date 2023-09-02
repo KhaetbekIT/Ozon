@@ -9,6 +9,17 @@ const CartInit = () => {
     const goodsWrapper = document.querySelector(".goods")
     const cartWrapper = document.querySelector(".cart-wrapper")
     const cartSend = cartModal.querySelector(".cart-confirm")
+    const counter = document.querySelector(".counter")
+
+    const CounterFunc = () => {
+        const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+
+        counter.textContent = cart.reduce((sum, goodItem) => {
+            return sum + goodItem.price
+        }, 0)
+    }
+
+    CounterFunc()
 
     cart.addEventListener("click", () => {
         const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
@@ -18,7 +29,10 @@ const CartInit = () => {
         cartTotal.textContent = cart.reduce((sum, goodItem) => {
             return sum + goodItem.price
         }, 0)
+
+        CounterFunc()
     })
+
 
     cartModalClose.addEventListener("click", () => {
         cartModal.classList.remove("d-flex")
@@ -60,6 +74,8 @@ const CartInit = () => {
             cartTotal.textContent = cart.reduce((sum, goodItem) => {
                 return sum + goodItem.price
             }, 0)
+
+            CounterFunc()
         }
     })
 

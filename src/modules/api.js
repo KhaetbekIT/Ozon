@@ -1,11 +1,11 @@
 const GetDataFunc = (path = "") => {
-    return fetch(`https://khaetbek-ozon-ab945-default-rtdb.firebaseio.com/goods.json/${path}`)
+    return fetch(`https://ozon-server-api.onrender.com/goods/${path}`)
         .then(response => response.json())
 
 }
 
 const PostDataFunc = (path = "", data = {}) => {
-    return fetch(`https://khaetbek-ozon-ab945-default-rtdb.firebaseio.com/goods.json/${path}`, {
+    return fetch(`https://ozon-server-api.onrender.com/goods/${path}`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -15,7 +15,7 @@ const PostDataFunc = (path = "", data = {}) => {
 }
 
 const DeleteDataFunc = (path = "", id = 0) => {
-    return fetch(`https://khaetbek-ozon-ab945-default-rtdb.firebaseio.com/goods.json/${path}/${id}`)
+    return fetch(`https://ozon-server-api.onrender.com/goods/${path}/${id}`)
 }
 
 export { GetDataFunc, PostDataFunc, DeleteDataFunc }

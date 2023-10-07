@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://ozon.whpchust.ru/",
   "dependencies": {
     "acorn": "^8.10.0",
     "acorn-import-assertions": "^1.9.0",
@@ -92,11 +93,12 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode=production",
     "watch": "webpack --watch --mode=development",
-    "server": "json-server --watch db/db.json --port 9000"
+    "server": "json-server --watch db/db.json --port 9000",
+    "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Khaetbek Akhmadzhonov",
   "license": "ISC"
 }
